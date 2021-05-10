@@ -1,11 +1,8 @@
+
 <script>
-  let name = 'world'
+  let src = 'tutorial/image.gif';
 </script>
-
-<main>
-	<h1>Hello {name}!</h1>
-</main>
-
+<img src="{src}" alt="A man dances">
 <style>
 	main {
 		text-align: center;
@@ -27,3 +24,4 @@
 		}
 	}
 </style>
+

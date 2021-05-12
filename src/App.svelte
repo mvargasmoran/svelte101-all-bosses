@@ -1,6 +1,12 @@
 <script>
   let count = 0;
   $: doubled = count * 2;
+  $: if ( count >= 10) {
+    console.log(`the count is ${count}`);
+    alert(`count is too damn high`.toUpperCase());
+    count = 9;
+  }
+
 
   function handleClick() {
     count += 1;

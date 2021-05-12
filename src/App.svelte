@@ -1,6 +1,10 @@
 <script>
-  let string = `This string contains some <strong>html!!!</strong>`;
+  let count = 0;
+  function handleClick() {
+    count+=1;
+  }
 </script>
-<p>
-  {@html string}
-</p>
+
+<button on:click="{handleClick}">
+  Clicked {count} {count === 1 ? 'time' : 'times' }
+</button>

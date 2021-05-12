@@ -1,33 +1,39 @@
 <script>
-  	let cats = [
-		{ id: 'J---aiyznGQ', name: 'Keyboard Cat' },
-		{ id: 'z_AbfPXTKms', name: 'Maru' },
-		{ id: 'OUtn3pvWmpg', name: 'Henri The Existential Cat' }
-	];
+  //import { each } from "svelte/internal";
+  import Thing from "./Thing.svelte";
+
+  let things = [
+    { id: 1, color: 'darkblue' },
+    { id: 2, color: 'indigo' },
+    { id: 3, color: 'deeppink' },
+    { id: 4, color: 'salmon' },
+    { id: 5, color: 'gold' }
+  ];
+
+  function handleClick() {
+    things = things.slice(1);
+  }
 </script>
 
-<h1>The famous Cats of Youtube</h1>
-
-<h3>Regular usage</h3>
-<ul>
-  {#each cats as cat, index}
-    <li>
-      <a target="_blank" href="https://www.youtube.com/watch?v={cat.id}">
-        {index+1}: {cat.name}
-      </a>
-    </li>
-  {/each}
-</ul>
-
-
-<h3>Destructuring usage</h3>
-<ul>
-  {#each cats as {id, name}, index}
-    <li>
-      <a target="_blank" href="https://www.youtube.com/watch?v={id}">
-        {index+1}: {name}
-      </a>
-    </li>
-  {/each}
-</ul>
-
+<button on:click={handleClick}>
+  Remove top thing
+</button>
+<hr>
+<div>
+{#each things as thing}
+  <Thing current={thing.color}/>
+{/each}
+</div>
+<div>
+{#each things as thing (thing.id)}
+  <Thing current={thing.color}/>
+{/each}
+</div>
+<style>
+  div {
+    border: 1px solid orchid;
+    display: block;
+    width: 48%;
+    float: left;
+  }
+</style>

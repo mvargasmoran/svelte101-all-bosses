@@ -1,11 +1,7 @@
 <script>
-  export let answer;
+  export let answer = 'a mystery';
+  export let color = 'orchid';
 </script>
-<p>
-  The answer is {23}
+<p style="color: {color || 'orchid'};">
+  The answer is {answer}
 </p>
-<style>
-  p {
-    border: 1px solid orchid;
-  }
-</style>

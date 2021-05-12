@@ -1,5 +1,8 @@
+<script>
+  export let answer;
+</script>
 <p>
-  This is a nested paragraph
+  The answer is {23}
 </p>
 <style>
   p {

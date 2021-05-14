@@ -19,7 +19,7 @@
   Start by calling the calling the promise
 </h1>
 <button on:click={handleClick}>
-	generate random number
+	Fetch for a random number
 </button>
 
 {#await promise}
@@ -29,4 +29,14 @@
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}
+
+<div style="border: 1px solid orchid;min-height: 30px;">
+  <p>
+    There's no need for to await, then, catch.
+    it can just be await then.
+  </p>
+{#await promise then value}
+	<p>the value is {value}</p>
+{/await}
+</div>
 

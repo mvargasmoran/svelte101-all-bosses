@@ -1,39 +1,31 @@
 <script>
-  //import { each } from "svelte/internal";
-  import Thing from "./Thing.svelte";
+	async function getRandomNumber() {
+		const res = await fetch(`tutorial/random-number`);
+		const text = await res.text();
 
-  let things = [
-    { id: 1, color: 'darkblue' },
-    { id: 2, color: 'indigo' },
-    { id: 3, color: 'deeppink' },
-    { id: 4, color: 'salmon' },
-    { id: 5, color: 'gold' }
-  ];
+		if (res.ok) {
+			return text;
+		} else {
+			throw new Error(text);
+		}
+	}
 
-  function handleClick() {
-    things = things.slice(1);
-  }
+	let promise = getRandomNumber();
+
+	function handleClick() {
+		promise = getRandomNumber();
+	}
 </script>
 
 <button on:click={handleClick}>
-  Remove top thing
+	generate random number
 </button>
-<hr>
-<div>
-{#each things as thing}
-  <Thing current={thing.color}/>
-{/each}
-</div>
-<div>
-{#each things as thing (thing.id)}
-  <Thing current={thing.color}/>
-{/each}
-</div>
-<style>
-  div {
-    border: 1px solid orchid;
-    display: block;
-    width: 48%;
-    float: left;
-  }
-</style>
+
+{#await promise}
+	<p>...waiting</p>
+{:then number}
+	<p>The number is {number}</p>
+{:catch error}
+	<p style="color: red">{error.message}</p>
+{/await}
+

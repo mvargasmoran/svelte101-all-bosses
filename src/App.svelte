@@ -1,9 +1,9 @@
 <script>
-  import Outer from "./Outer.svelte";
+import CustomButton from "./CustomButton.svelte";
 
-  function handleMessage(e) {
-    alert(e.detail.text);
+  function handleClick() {
+    alert('Button clicked');
   }
 </script>
-<Outer on:message={handleMessage}/>
+<CustomButton on:click={handleClick} />
 
